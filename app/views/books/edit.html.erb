@@ -1,0 +1,48 @@
+<!--エラーメッセージ表示-->
+<% if @book.errors.any? %>
+	<div id="error_explanation">
+		<h4><%= @book.errors.count %> error prohibited this obj from being saved:</h4>
+		<ul>
+			<% @book.errors.full_messages.each do |msg| %>
+	    		<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="row">
+	<!-- col-md-offset-3は両端それぞれ3つ分の空きをつくる -->
+	<div class="col-md-6 col-md-offset-3">
+
+		<h1>Editing Book</h1>
+		<%= form_for(@book) do |b| %>
+		<!-- 編集なのでnewformからは持ってこない -->
+			<div class="field row">
+				<%= b.label :title, "Title" %>
+				<p><%= b.text_field :title, class: "col-xs-12" %></p>
+			</div>
+
+			<div class="field row">
+				<%= b.label :body, "Opinion" %>
+				<p><%= b.text_area :body, class: "col-xs-12" %></p>
+			</div>
+			<br>
+			<div class="action row">
+				<%= b.submit 'Update Book', class: "col-xs-12 btn btn-primary" %>
+			</div>
+		<% end %>
+		<!-- 編集画面へ -->
+		<%= link_to "Show", @book, class: "book_#{@book.id}" %>
+		|
+		<!-- Bookに戻る -->
+		<%= link_to "Back", books_path, class: "back" %>
+
+	</div>
+	<div class="col-md-3"></div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-9 ml-auto"></div>
+	<p>©︎CopyRight Infratop.inc</p>
+</div>

@@ -1,0 +1,56 @@
+<!--ヘッダー-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!--ヘッダーheaderタグで作る-->
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+
+        <!-- navbar-brandは会社や製品などに使用　 -->
+        <nav class="nav navbar-brand navbar-left"　href="#">
+          <span>Bookers</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <!--if文 サインインorアウト時の表示変更-->
+            <% if user_signed_in? %>
+              <!-- 自分の投稿 -->
+              <li><%= link_to ' home', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
+              <!-- 他ユーザ -->
+              <li><%= link_to ' users', users_path, class: 'glyphicon glyphicon-user users' %></li>
+              <!-- 他の本 -->
+              <li><%= link_to ' books', books_path, class: 'glyphicon glyphicon-book books' %></li>
+              <!-- logout -->
+              <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+            <% else %>
+              <!-- top -->
+              <li><%= link_to ' home', root_path, class: 'glyphicon glyphicon-home home' %></li>
+              <!-- about -->
+              <li><%= link_to ' about', '/home/about', class: 'glyphicon glyphicon-link about' %></li>
+              <!-- 新規登録 -->
+              <li><%= link_to ' sign up', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
+              <!-- login -->
+              <li><%= link_to ' login', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in' %></li>
+            <% end %>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+    <!--ヘッダー-->
+    <div class="container">
+      <p id="notice"><%= notice %></p>
+      <!--画面呼出-->
+        <%= yield %>
+    </div>
+  </body>
+</html>

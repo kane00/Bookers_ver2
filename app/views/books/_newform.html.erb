@@ -1,0 +1,18 @@
+<!-- 新規book作成 -->
+<%= form_for(@newbook) do |f| %>
+	<!-- タイトル -->
+	<div class="field row">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "col-xs-12 book_title" %>
+	</div>
+	<!-- 本文 -->
+	<div class="field row">
+		<!-- f.label :タグ "名前" -->
+		<%= f.label :body, "Opinion" %> 
+		<%= f.text_area :body, class: "col-xs-12 book_body" %>
+	</div>
+	<!-- ボタン -->
+	<div class="actions row">
+		<%= f.submit class: "btn btn-primary col-xs-12" %>
+	</div>
+<% end %>

@@ -1,0 +1,71 @@
+<!-- エラーメッセージ表示-->
+<% if @newbook.errors.any? %>
+          <div id="error_explanation">
+            <h3><%= @newbook.errors.count %> error prohibited this obj from being saved:</h3>
+              <ul>
+                  <% @newbook.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+              </ul>
+          </div>
+      <% end %>
+
+
+<div class="row">
+	<div class="col-xs-3">
+		<!-- プロフィール -->
+		<h2>User info</h2>
+		<table class="table">
+			<!-- プロフィール画像 -->
+			<!-- <(21~34行目)%= render 'users/profile', user: current_user %>へ変更も可 -->
+			<tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
+			<tr>
+				<th>name</th>
+				<th><%= @user.name %></th>
+			</tr>
+			<tr>
+				<th>introduction</th>
+				<th><%= @user.introduction %></th>
+			</tr>
+		</table>
+		<!-- 編集ボタン -->
+		<div class="row">
+			<%= link_to '',edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{@user.id}" %>
+		</div>
+
+		<!-- 新規投稿部分 -->
+		<!--同コントローラーのviewで表示ならusersは省略可 -->
+		<h2>New book</h2>
+		<%= render 'books/newform', book: @book %>
+	</div>
+
+	<div class="col-xs-9">
+		<h2>Books</h2>
+		<!--books一覧 -->
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th class="col-xs-4"></th>
+					<th class="col-xs-3">Title</th>
+					<th class="col-xs-4">Opinion</th>
+					<th class="col-xs-1"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @user.books.each do |book| %>
+				    <tr>
+				        <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
+				        <td><%= link_to book.title, book_path(book) %></td>
+				        <td><%= book.body %></td>
+				    </tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9 ml-auto"></div>
+	<p>©︎CopyRight Infratop.inc</p>
+</div>
+

@@ -1,0 +1,70 @@
+<!-- エラーメッセージ表示-->
+<% if @newbook.errors.any? %>
+    <div id="error_explanation">
+        <h3><%= @newbook.errors.count %> error prohibited this obj from being saved:</h3>
+        <ul>
+            <% @newbook.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<!-- プロフィール表示 -->
+<div class="row">
+	<!-- 左画面3/12 -->
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<!-- 画像 -->
+		<%= render 'users/profile', user: current_user %>
+		<!--右側の指定を間違えるとエラーが発生して表示されない -->
+		<!-- 新規投稿部分 -->
+		<h2>New book</h2>
+		<%= form_for(@newbook) do |f| %>
+			<div class="field row">
+				<%= f.label :title %>
+				<%= f.text_field :title, class: "col-xs-12 book_title" %>
+			</div>
+
+			<div class="field row">
+				<%= f.label :body, "Opinion" %> 
+				<%= f.text_area :body, class: "col-xs-12 book_body" %>
+			</div>
+
+			<div class="actions row">
+				<%= f.submit class: "btn btn-primary col-xs-12" %>
+			</div>
+		<% end %>
+	</div>
+
+	<!-- 右画面9/12 -->
+	<div class="col-xs-9">
+		<h2>Users</h2>
+		<!--users一覧 -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-xs-4">image</th>
+					<th class="col-xs-5">name</th>
+					<th class="col-xs-3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpg', fallback: "no-image-mini.jpg", size:'30x30' %></td>
+					<td><%= user.name%></td>
+					<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-9 ml-auto"></div>
+	<p>©︎CopyRight Infratop.inc</p>
+</div>
+

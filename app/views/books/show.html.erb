@@ -1,0 +1,77 @@
+<!-- エラーメッセージ表示 -->
+<% if @newbook.errors.any? %>
+    <div id="error_explanation">
+        <h3><%= @newbook.errors.count %> error prohibited this obj from being saved:</h3>
+        <ul>
+            <% @newbook.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<!-- プロフィール表示部分 -->
+<div class="row">
+	<!-- 左3つ -->
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<!-- <(19~37行目)%= render 'users/profile', user: current_user %>へ変更も可 -->
+		<table class="table">
+			<!-- プロフィール画像、@userで@book.userではない -->
+			<tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
+			<tr>
+				<!-- 名前 -->
+				<th>name</th>
+				<th><%= @book.user.name %></th>
+			</tr>
+			<tr>
+				<!-- 紹介文 -->
+				<th>introduction</th>
+				<th><%= @book.user.introduction %></th>
+			</tr>
+		</table>
+
+		<div class="row">
+			<!-- 編集画面アクセス -->
+			<%= link_to '',edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{@user.id}" %>
+		</div>
+
+		<h2>New book</h2>
+		<!-- newformからもってきた newformをそのままいれても可 -->
+		<%= render 'books/newform' %>
+	</div>
+
+	<!-- 残り9つ、9/12 -->
+	<div class="col-xs-9">
+		<!-- 投稿確認表示 -->
+		<h2>Book detail</h2>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
+						<p><%= link_to @book.user.name, user_path(@user) %></p>
+					</td>
+				    <td><%= @book.title %></td>
+				    <td><%= @book.body %></td>
+				    <% if @book.user_id == current_user.id %>
+				    	<!-- 編集アクセスボタン -->
+					    <td>
+					    	<!-- btn-smで小さめ、btn btn-successで緑 -->
+						    <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success btn-sm" %>
+						</td>
+						<!-- 削除アクセスボタン -->
+						<td>
+							<!-- btn-smで小さめ、btn btn-dangerで赤、book_path(@book), method: :delete必要 -->
+						    <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "Are you Sure?"}, class: "btn btn-danger btn-sm" %>
+						</td>
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9 ml-auto"></div>
+	<p>©︎CopyRight Infratop.inc</p>
+</div>
