@@ -1,12 +1,14 @@
 <!-- エラーメッセージ表示-->
 <% if @newbook.errors.any? %>
     <div id="error_explanation">
-        <h3><%= @newbook.errors.count %> error prohibited this obj from being saved:</h3>
-        <ul>
-            <% @newbook.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
+    	<font color="red">
+	        <h3><%= @newbook.errors.count %> error prohibited this obj from being saved:</h3>
+    	    <ul>
+        	    <% @newbook.errors.full_messages.each do |msg| %>
+            	    <li><%= msg %></li>
+    	        <% end %>
+        	</ul>
+        </font>
     </div>
 <% end %>
 

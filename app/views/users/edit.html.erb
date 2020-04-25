@@ -2,36 +2,41 @@
 
 <%= form_for(@user) do |f| %>
 
-<!-- エラーメッセージ表示-->
-<% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h3><%= @user.errors.count %> error prohibited this obj from being saved:</h3>
-              <ul>
-                  <% @user.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-              </ul>
-          </div>
-      <% end %>
+  <!-- エラーメッセージ、タイトル下に表示-->
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @user.errors.count %> error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<div class="field">
-	<%= f.label :name %>
-	<%= f.text_field :name, class: "name" %>
-</div>
+  <div class="field">
+    <!-- 名前 -->
+  	<%= f.label :name %>
+  	<%= f.text_field :name, class: "name" %>
+  </div>
 
-<div class="field">
-	<%= f.label :image %>
-	<%= f.attachment_field :profile_image, class: "user_image" %>
-</div>
+  <div class="field">
+  	<%= f.label :image %>
+    <!-- ファイルから画像アップロード -->
+    <!-- カラム名はimage_idだとしても:imageを引数にする -->
+  	<%= f.attachment_field :profile_image, class: "user_image" %>
+  </div>
 
-<div class="field">
-	<%= f.label :introduction %>
-	<%= f.text_area :introduction, class: "introduction" %>
-</div>
+  <div class="field">
+    <!-- 概要 -->
+  	<%= f.label :introduction %>
+  	<%= f.text_area :introduction, class: "introduction" %>
+  </div>
 
-<div class="actions">
-	<%= f.submit %>
-</div>
+  <div class="actions">
+    <!-- Update Userボタン -->
+  	<%= f.submit %>
+  </div>
 
 <% end %>
 

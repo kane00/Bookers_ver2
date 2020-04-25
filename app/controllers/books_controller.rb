@@ -1,3 +1,10 @@
+  # ログインチェック
+  def login_check
+    unless user_signed_in?
+      redirect_to ("/users/sign_in")
+    end
+  end
+
 class BooksController < ApplicationController
 
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
@@ -26,7 +33,7 @@ class BooksController < ApplicationController
   def create
     # ストロングパラメータ
     @book = Book.new(book_params)
-    @book.user_id = current_user.
+    @book.user_id = current_user.id
     # 条件分岐
     # DBに保存
     if @book.save
@@ -48,7 +55,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-# 編集更新、保存
+  # 編集更新、保存
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
@@ -91,10 +98,5 @@ class BooksController < ApplicationController
   end
 
 
-  def login_check
-    unless user_signed_in?
-      redirect_to ("/users/sign_in")
-    end
-  end
 
 end

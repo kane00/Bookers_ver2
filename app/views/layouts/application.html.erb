@@ -1,4 +1,4 @@
-<!--ヘッダー-->
+<!--application.htmlはどのファイルを読み込む場合でも読み込まれる共通のview-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,7 +14,6 @@
     <!--ヘッダーheaderタグで作る-->
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-
         <!-- navbar-brandは会社や製品などに使用　 -->
         <nav class="nav navbar-nav navbar-left"　href="#">
           <span>Bookers</span>
@@ -43,14 +42,14 @@
             <% end %>
           </ul>
         </nav>
-
       </div>
     </header>
-    <!--ヘッダー-->
+
     <div class="container">
       <p id="notice"><%= notice %></p>
-      <!--画面呼出-->
+      <!--他viewファイルの内容を画面に表示-->
         <%= yield %>
     </div>
+    
   </body>
 </html>

@@ -16,17 +16,18 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+/*ヘッダーの高さ、テキストと被るのを避ける*/
+body {
+	margin-top: 50px;
+}
+/*ヘッダーテキストの色指定*/
 header {
 	color:white;
 }
-
+/*ヘッダー左側の指定*/
 header .navbar-left span {
 	font-size: 20px;
 	padding-top: 10px;
-}
-
-body {
-	margin-top: 40px;
 }
 
 .actions {
