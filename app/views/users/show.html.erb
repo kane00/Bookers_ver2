@@ -20,7 +20,8 @@
 		<table class="table">
 			<!-- プロフィール画像 -->
 			<!-- <(21~34行目)%= render 'users/profile', user: current_user %>へ変更も可 -->
-			<tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
+			<!-- :fill, 横幅, 高さなし、sizeで書く -->
+			<tr><%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
 			<tr>
 				<th>name</th>
 				<th><%= @user.name %></th>
@@ -58,8 +59,9 @@
 				<% @user.books.each do |book| %>
 				    <tr>
 				    	<td>
+				    		<!-- attachment_image_tagの書き方、:fill, 横幅, 高さは含めず、sizeで書く -->
 					    	<%= link_to(book.user) do %>
-				        		<%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %>
+				        		<%= attachment_image_tag @user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'30x30' %>
 				        	<% end %>
 				        </td>
 				        <td><%= link_to book.title, book_path(book) %></td>

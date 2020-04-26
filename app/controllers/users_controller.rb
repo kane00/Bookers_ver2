@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :ensure_correct_user, only: [:edit, :update]
 
-  before_action :login_check, only: [:new, :edit, :update, :destroy, :index, :show, :create]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :index]
 
   def index
     # 全データ取り出して格納
@@ -63,14 +63,14 @@ class UsersController < ApplicationController
 
 
   private
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
-  end
-
   def login_check
       unless user_signed_in?
         redirect_to ("/users/sign_in")
       end
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
 end

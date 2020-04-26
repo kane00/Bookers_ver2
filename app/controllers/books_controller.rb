@@ -1,10 +1,3 @@
-  # ログインチェック
-  def login_check
-    unless user_signed_in?
-      redirect_to ("/users/sign_in")
-    end
-  end
-
 class BooksController < ApplicationController
 
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
@@ -40,7 +33,7 @@ class BooksController < ApplicationController
       # 投稿・一覧画面へredirect
       redirect_to book_path(@book.id)
       # サクセスメッセージ表示
-      flash[:notice] = "You have creatad book successfully."
+      flash[:notice] = "You have created book successfully."
     else
       # book一覧に戻る、その際全データを取り出す
       @books = Book.all
@@ -92,9 +85,17 @@ class BooksController < ApplicationController
 
 
   private
+
+  # ログインチェック
+  def login_check
+    unless user_signed_in?
+      redirect_to ("/users/sign_in")
+    end
+  end
+
   # 投稿データ受取
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :profile_image)
   end
 
 

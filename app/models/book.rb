@@ -5,6 +5,10 @@ class Book < ApplicationRecord
 	def books
 	  return Book.find_by(user_id: self.id)
 	end
+
+	# 画像投稿機能
+  	attachment :profile_image
+
 	# バリデーションチェック、タイトルに何か書かれているか
 	validates :title, presence: true
 	# バリテーションチェック、空白出ないか＋Max199文字まで

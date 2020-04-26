@@ -19,8 +19,9 @@
 		<h2>User info</h2>
 		<!-- <(19~37行目)%= render 'users/profile', user: current_user %>へ変更も可 -->
 		<table class="table">
-			<!-- プロフィール画像、@userで@book.userではない -->
-			<tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
+			<!-- プロフィール画像、@userではない　@book.userで本のユーザの画像をもってくる意味 -->
+			<!-- attachment_image_tagの書き方、:fill, 横幅, 高さなし、sizeで書く -->
+			<tr><%= attachment_image_tag @book.user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
 			<tr>
 				<!-- 名前 -->
 				<th>name</th>
@@ -51,8 +52,11 @@
 			<tbody>
 				<tr>
 					<td>
-						<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
-						<p><%= link_to @book.user.name, user_path(@user) %></p>
+						<!-- attachment_image_tagの書き方、:fill, 横幅, 高さなし、sizeで書く -->
+						<!-- @userだとログインユーザーになる、@book.userで本のユーザーに -->
+						<%= attachment_image_tag @book.user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'30x30' %>
+						<!-- user_path(@user)を@book.userに変更 -->
+						<p><%= link_to @book.user.name, @book.user %></p>
 					</td>
 				    <td><%= @book.title %></td>
 				    <td><%= @book.body %></td>

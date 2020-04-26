@@ -1,6 +1,8 @@
 <!-- 左側プロフィール、ひとつのプロット -->
 <table class="table">
-		<tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
+		<!-- attachment_image_tagの書き方、:fill, 横幅, 高さは含めず、sizeで書く -->
+		<!-- attachment_image_tagの後ろはindexの場合@はなし -->
+		<tr><%= attachment_image_tag user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %></tr>
 
 		<tr>
 			<!-- 名前 -->

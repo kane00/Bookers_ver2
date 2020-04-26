@@ -62,7 +62,8 @@
 						<td>
 							<!-- プロフィール画像 -->
 							<%= link_to(book.user) do %>
-								<%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpg', fallback: "no_image.jpg", size:'30x30' %>
+							<!-- attachment_image_tagの書き方、:fill, 横幅, 高さは含めず、sizeで書く -->
+								<%= attachment_image_tag book.user, :profile_image, format: 'jpg', fallback: "no_image.jpg", size:'30x30' %>
 							<% end %>
 						</td>
 						<!-- 本のタイトル -->
