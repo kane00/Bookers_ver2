@@ -56,7 +56,7 @@
 				<% @users.each do |user| %>
 				<tr>
 					<!-- attachment_image_tagの書き方、:fill, 横幅, 高さなし、sizeで書く -->
-					<!-- attachment_image_tagの後ろはindexの場合@なし -->
+					<!-- attachment_image_tagの後ろは@なし @users.eachのuserで取り出しているため -->
 					<td><%= attachment_image_tag user, :profile_image, format: 'jpg', fallback: "no-image-mini.jpg", size:'30x30' %></td>
 					<td><%= user.name%></td>
 					<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>

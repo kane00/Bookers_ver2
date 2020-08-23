@@ -95,7 +95,7 @@ class BooksController < ApplicationController
 
   # 投稿データ受取
   def book_params
-    params.require(:book).permit(:title, :body, :profile_image)
+    params.require(:book).permit(:title, :body, :profile_image, :tag_list)
   end
 
 

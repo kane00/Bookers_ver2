@@ -1,4 +1,8 @@
 class Book < ApplicationRecord
+	acts_as_taggable #追加
+  # acts_as_taggable_on :tags　と同じ意味のエイリアス
+  # tags のなかにIDやら名前などが入る。イメージ的には親情報。
+
 
 	belongs_to :user
 
